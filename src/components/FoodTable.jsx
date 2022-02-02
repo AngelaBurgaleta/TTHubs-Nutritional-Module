@@ -15,9 +15,14 @@ import {
 
 export function FoodTable(props) {
 
-//const [foods, setFoods] = useState(data);
+  //manejador para filtrar por nombre del alimento
+  const [search, setSearch] = useState("");
 
-return (
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
+  return (
     <>
       <div className="content">
         <Row>
@@ -26,7 +31,14 @@ return (
               <CardHeader>
                 <CardTitle tag="h4">Nutritional Module</CardTitle>
               </CardHeader>
-              <CardBody> 
+              <CardBody>
+                <input
+                  id="search"
+                  type="text"
+                  placeholder="Search by name..."
+                  onChange={handleSearch}
+                />
+
                 <Table striped>
                   <thead className="text-success">
                     <tr>
@@ -38,8 +50,16 @@ return (
                     </tr>
                   </thead>
                   <tbody>
-                    {props.foods.map((food) => (
-                      <tr>
+                    {props.foods.filter(val => {
+                      if (props.search === "") {
+                        return val;
+                      }else if(
+                        val.Name.toLowerCase().includes(search.toLowerCase())
+                      ){
+                        return val;
+                      }
+                    }).map((food, index) => (
+                      <tr key={index}>
                         <td>{food.Name}</td>
                         <td>{food.FoodGroup}</td>
                         <td>{food.FoodSubgroup}</td>
@@ -49,15 +69,11 @@ return (
                     ))}
                   </tbody>
                 </Table>
-                </CardBody>
+              </CardBody>
             </Card>
           </Col>
         </Row>
       </div>
     </>
-
-
-)
-
+  );
 }
-

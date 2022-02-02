@@ -15,9 +15,10 @@ import {
   Form,
   Button,
 } from "reactstrap";
+import { AddFood } from "components/AddFood";
 
 export function App() {
-  //const [foods, setFoods] = useState(data);
+
 
   const [foods, setFoods] = useState(data);
 
@@ -65,9 +66,18 @@ export function App() {
       TotalLipids: addFormData.TotalLipids,
     };
 
-    //const newFoods = [...props.foods, newFood];
-    //props.setFoods(newFood);
+    const newFoods = [...foods, newFood];
+    setFoods(newFoods);
   };
+
+
+  /*
+  const datax = {
+    foods: foods.filter((item) =>
+    item.name.includes(search)
+    ),
+  };
+
 
   /*
   //referencia comida
@@ -97,94 +107,8 @@ export function App() {
 
   return (
     <Fragment>
-      <FoodTable foods={foods} setFoods={setFoods} />
-      <div className="content">
-        <Row>
-          <Col md="12">
-            <h3>Add a food</h3>
-            <Form onSubmit={handleAddFormSubmit}>
-              <input
-                type="text"
-                name="Name"
-                required="Required"
-                placeholder="Enter a name"
-                onChange={handleAddFormChange}
-              />
-
-              <input
-                type="text"
-                name="FoodGroup"
-                required="Required"
-                placeholder="Enter the food group"
-                onChange={handleAddFormChange}
-              />
-              <input
-                type="text"
-                name="FoodSubgroup"
-                required="Required"
-                placeholder="Enter the food subgroup"
-                onChange={handleAddFormChange}
-              />
-              <input
-                type="text"
-                name="Country"
-                required="Required"
-                placeholder="Enter the Country"
-                onChange={handleAddFormChange}
-              />
-              <input
-                type="text"
-                name="EnergyKcal"
-                required="Required"
-                placeholder="Enter energy (Kcal)"
-                onChange={handleAddFormChange}
-              />
-              <input
-                type="text"
-                name="EnergyKJ"
-                required="Required"
-                placeholder="Enter energy (KJ)"
-                onChange={handleAddFormChange}
-              />
-              <input
-                type="text"
-                name="TotalProteins"
-                required="Required"
-                placeholder="Enter total proteins"
-                onChange={handleAddFormChange}
-              />
-              <input
-                type="text"
-                name="TotalCarbos"
-                required="Required"
-                placeholder="Enter total carbohydrates"
-                onChange={handleAddFormChange}
-              />
-              <input
-                type="text"
-                name="TotalSugars"
-                required="Required"
-                placeholder="Enter total sugars"
-                onChange={handleAddFormChange}
-              />
-              <input
-                type="text"
-                name="TotalLipids"
-                required="Required"
-                placeholder="Enter total lipds"
-                onChange={handleAddFormChange}
-              />
-              <Button
-                color="success"
-                className="nc-icon nc-simple-add"
-                type="submit"
-              >
-                <em></em>
-              </Button>
-            </Form>
-          </Col>
-        </Row>
-      </div>
+      <FoodTable foods={foods} setFoods={setFoods}/>
+      <AddFood handleAddFormChange={handleAddFormChange} handleAddFormSubmit={handleAddFormSubmit} />
     </Fragment>
   );
 

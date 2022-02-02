@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
 import data from "./mock-data.json";
 import { FoodTable } from "./FoodTable";
 
@@ -75,13 +74,13 @@ export function AddFood(props) {
       <Row>
         <Col md="12">
           <h3>Add a food</h3>
-          <Form onSubmit={handleAddFormSubmit}>
+          <Form onSubmit={props.handleAddFormSubmit}>
             <input
               type="text"
               name="Name"
               required="Required"
               placeholder="Enter a name"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
 
             <input
@@ -89,63 +88,56 @@ export function AddFood(props) {
               name="FoodGroup"
               required="Required"
               placeholder="Enter the food group"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
             <input
               type="text"
               name="FoodSubgroup"
               required="Required"
               placeholder="Enter the food subgroup"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
             <input
               type="text"
               name="Country"
               required="Required"
               placeholder="Enter the Country"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
             <input
               type="text"
-              name="EnergyKcal"
+              name="Energy"
               required="Required"
               placeholder="Enter energy (Kcal)"
-              onChange={handleAddFormChange}
-            />
-            <input
-              type="text"
-              name="EnergyKJ"
-              required="Required"
-              placeholder="Enter energy (KJ)"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
             <input
               type="text"
               name="TotalProteins"
               required="Required"
               placeholder="Enter total proteins"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
             <input
               type="text"
               name="TotalCarbos"
               required="Required"
               placeholder="Enter total carbohydrates"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
             <input
               type="text"
               name="TotalSugars"
               required="Required"
               placeholder="Enter total sugars"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
             <input
               type="text"
               name="TotalLipids"
               required="Required"
               placeholder="Enter total lipds"
-              onChange={handleAddFormChange}
+              onChange={props.handleAddFormChange}
             />
             <Button color= "success" className="nc-icon nc-simple-add" type="submit">
               <em></em>
