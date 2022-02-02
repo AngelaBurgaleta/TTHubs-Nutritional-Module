@@ -2,8 +2,7 @@ import React, { useState, Fragment, useRef } from "react";
 import { nanoid } from "nanoid";
 import data from "./components/mock-data.json";
 import { FoodTable } from "./components/FoodTable";
-//import { AddFood } from "./components/AddFood";
-
+import { AddFood } from "components/AddFood";
 import {
   Card,
   CardHeader,
@@ -14,12 +13,16 @@ import {
   Col,
   Form,
   Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  FormGroup,
+  Input,
+  Label,
 } from "reactstrap";
-import { AddFood } from "components/AddFood";
 
 export function App() {
-
-
   const [foods, setFoods] = useState(data);
 
   const [addFormData, setAddFormData] = useState({
@@ -70,47 +73,47 @@ export function App() {
     setFoods(newFoods);
   };
 
+  const [show, setShow] = useState(false);
 
-  /*
-  const datax = {
-    foods: foods.filter((item) =>
-    item.name.includes(search)
-    ),
-  };
-
-
-  /*
-  //referencia comida
-  const foodRef = useRef();
-
-  const handleAddFormChange = (event) => {
-    const food = foodRef.current.value
-    if(food === '') return;
-
-    setFoods((prevFoods) => {
-      return [...prevFoods, {
-        id: nanoid(),
-        Name,
-        FoodGroup, 
-        FoodSubgroup, 
-        Country,
-        EnergyKcal,
-        EnergyKJ,
-        TotalProteins, 
-        TotalCarbos,
-        TotalSugars,
-        TotalLipids
-        }];
-    })
-  };
-*/
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <Fragment>
-      <FoodTable foods={foods} setFoods={setFoods}/>
-      <AddFood handleAddFormChange={handleAddFormChange} handleAddFormSubmit={handleAddFormSubmit} />
+      <FoodTable foods={foods} setFoods={setFoods} />
+      <AddFood
+        handleAddFormChange={handleAddFormChange}
+        handleAddFormSubmit={handleAddFormSubmit}
+        show={show}
+        setShow={setShow}
+        handleShow={handleShow}
+        handleClose={handleClose}
+      />
     </Fragment>
   );
 
-
+  /*
+  return (
+    <Fragment>
+      <Button color="success" onClick={handleShow}>Show Modal</Button>
+      <Modal isOpen={show}>
+        <ModalHeader>Añadir Alimento</ModalHeader>
+        <ModalBody>
+          <FormGroup>
+            <Label for="usuario">Nombre</Label>
+            <Input type="text"/>
+          </FormGroup>
+          <FormGroup>
+            <Label for="nombre">Energia</Label>
+            <Input type="text" id="energia" />
+          </FormGroup>
+        </ModalBody>
+        <ModalFooter>
+        <Button color="success">Añadir</Button>
+        <Button onClick={handleClose} color="success">Cerrar</Button>
+        </ModalFooter> 
+      </Modal>
+    </Fragment>
+  );
+ */
 }
