@@ -1,35 +1,17 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-import Home from "components/pages/Home";
-import Reports from "components/pages/Reports";
-import Statistics from "components/pages/Statistics";
+import Home from "./pages/Home";
+import Reports from "./pages/Reports";
+import Statistics from "./pages/Statistics";
 
 import logo from "logo.svg";
 
 var ps;
 
-function Sidebar(props) {
+export function Sidebar(props) {
   const sidebar = React.useRef();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
@@ -97,5 +79,3 @@ function Sidebar(props) {
   );
 }
 
-
-export default Sidebar;

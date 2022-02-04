@@ -22,8 +22,6 @@ import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import Home from "components/pages/Home";
-import Reports from "components/pages/Reports";
-import Statistics from "components/pages/Statistics";
 
 import logo from "logo.svg";
 
@@ -72,30 +70,29 @@ function Sidebar(props) {
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>
         <Nav>
-          <li>
-            <NavLink to="/" className="nav-link" activeClassName="active">
-              Home
-              <i className="nc-icon nc-layout-11" />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/statistics" className="nav-link" activeClassName="active">
-              Statistics
-              <i className="nc-icon nc-sound-wave" />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/reports" className="nav-link" activeClassName="active">
-              Reports
-              <i className="nc-icon nc-single-copy-04" />
-            </NavLink>
-          </li>
-          );
+          {props.routes.map((prop, key) => {
+            return (
+              <li
+                className={
+                  activeRoute(prop.path) + (prop.pro ? " active-pro" : "")
+                }
+                key={key}
+              >
+                <NavLink
+                  to="/"
+                  className="nav-link"
+                  activeClassName="active"
+                >
+                  <i className={prop.icon} />
+                  <p>Home</p>
+                </NavLink>
+              </li>
+            );
+          })}
         </Nav>
       </div>
     </div>
   );
 }
-
 
 export default Sidebar;

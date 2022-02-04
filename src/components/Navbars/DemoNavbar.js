@@ -115,6 +115,7 @@ function Header(props) {
               onClick={() => openSidebar()}
             >
               <span className="navbar-toggler-bar bar1" />
+              hey
               <span className="navbar-toggler-bar bar2" />
               <span className="navbar-toggler-bar bar3" />
             </button>

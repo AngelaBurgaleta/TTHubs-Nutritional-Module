@@ -2,9 +2,12 @@ import React, { useState, Fragment, useRef } from "react";
 import { nanoid } from "nanoid";
 import data from "./components/mock-data.json";
 import { FoodTable } from "./components/FoodTable";
-import { AddFood } from "components/AddFood";
+import { AddFood } from "./components/AddFood";
+import { NavbarEl } from "components/NavbarEl";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   Card,
+  Container,
   CardHeader,
   CardBody,
   CardTitle,
@@ -20,7 +23,12 @@ import {
   FormGroup,
   Input,
   Label,
+  Navbar
 } from "reactstrap";
+import Home from "./components/pages/Home";
+import Statistics from "./components/pages/Statistics";
+import Reports from "./components/pages/Reports";
+import  {Sidebar}  from "./components/Sidebar";
 
 export function App() {
   const [foods, setFoods] = useState(data);
@@ -73,13 +81,17 @@ export function App() {
     setFoods(newFoods);
   };
 
+  //Abrir y cerrar el modal de añadir alimento
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
   return (
     <Fragment>
+      <Navbar />
       <FoodTable foods={foods} setFoods={setFoods} />
       <AddFood
         handleAddFormChange={handleAddFormChange}
@@ -92,28 +104,29 @@ export function App() {
     </Fragment>
   );
 
-  /*
+
+  
+
+  
+/*
+  //nav bar side
+
   return (
     <Fragment>
-      <Button color="success" onClick={handleShow}>Show Modal</Button>
-      <Modal isOpen={show}>
-        <ModalHeader>Añadir Alimento</ModalHeader>
-        <ModalBody>
-          <FormGroup>
-            <Label for="usuario">Nombre</Label>
-            <Input type="text"/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="nombre">Energia</Label>
-            <Input type="text" id="energia" />
-          </FormGroup>
-        </ModalBody>
-        <ModalFooter>
-        <Button color="success">Añadir</Button>
-        <Button onClick={handleClose} color="success">Cerrar</Button>
-        </ModalFooter> 
-      </Modal>
+      <Router>
+        <Navbar />
+        <div>
+          <Sidebar />
+          <div className="content">
+            <Switch>
+              <Route path="/" exact={true} component={Home} />
+              <Route path="/statistics" exact={true} component={Statistics} />
+              <Route path="/reports" exact={true} component={Reports} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
     </Fragment>
   );
- */
+  */
 }

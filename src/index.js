@@ -34,14 +34,15 @@ ReactDOM.render(
     <App />
   </React.StrictMode>,
   document.getElementById("root")
-
-  /*
+ 
+ /* 
   <BrowserRouter>
     <Switch>
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
       <Redirect to="/admin/dashboard" />
     </Switch>
   </BrowserRouter>,
-  document.getElementById("root")
-  */
+  document.getElementById("root") 
+ */
+ 
 );
