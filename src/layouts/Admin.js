@@ -30,7 +30,7 @@ import routes from "routes.js";
 
 var ps;
 
-function Dashboard(props) {
+function Admin(props) {
   const [backgroundColor, setBackgroundColor] = React.useState("black");
   const [activeColor, setActiveColor] = React.useState("info");
   const mainPanel = React.useRef();
@@ -90,4 +90,4 @@ function Dashboard(props) {
   );
 }
 
-export default Dashboard;
+export default Admin;

@@ -4,19 +4,21 @@ import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import Home from "./pages/Home";
-import Reports from "./pages/Reports";
+import {Mock_table} from "./pages/Mock_table";
+import { FoodTable } from "./FoodTable";
+import { AddFood} from "./AddFood";
 import Statistics from "./pages/Statistics";
+import Admin from '../layouts/Admin';
 
 import logo from "logo.svg";
+
 
 var ps;
 
 export function Sidebar(props) {
   const sidebar = React.useRef();
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName) => {
-    return props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
-  };
+ 
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(sidebar.current, {
@@ -36,21 +38,20 @@ export function Sidebar(props) {
       data-color={props.bgColor}
       data-active-color={props.activeColor}
     >
+
       <div className="logo">
         <a
-          href="https://www.creative-tim.com"
           className="simple-text logo-mini"
         >
           <div className="logo-img">
             <img src={logo} alt="react-logo" />
           </div>
         </a>
-        <a
-          href="https://www.creative-tim.com"
+        <div
           className="simple-text logo-normal"
         >
           TTHubs
-        </a>
+        </div>
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>
         <Nav>
@@ -67,8 +68,14 @@ export function Sidebar(props) {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/reports" className="nav-link" activeClassName="active">
-              Reports
+            <NavLink to="/foodtable" className="nav-link" activeClassName="active">
+              Food Table
+              <i className="nc-icon nc-tile-56" />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/addfood" className="nav-link" activeClassName="active">
+              Add Food
               <i className="nc-icon nc-single-copy-04" />
             </NavLink>
           </li>

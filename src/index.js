@@ -26,16 +26,14 @@ import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 import AdminLayout from "layouts/Admin.js";
-import {App} from './App';
+import { App } from "./App";
 
 ReactDOM.render(
+  <App />,
 
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
   document.getElementById("root")
- 
- /* 
+
+  /* 
   <BrowserRouter>
     <Switch>
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
@@ -44,5 +42,4 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root") 
  */
- 
 );

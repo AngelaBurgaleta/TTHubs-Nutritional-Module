@@ -1,9 +1,7 @@
 import React, { useState, Fragment, useRef } from "react";
 import { nanoid } from "nanoid";
 import data from "./components/mock-data.json";
-import { FoodTable } from "./components/FoodTable";
-import { AddFood } from "./components/AddFood";
-import { NavbarEl } from "components/NavbarEl";
+//import { AddFood } from "./components/AddFood";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   Card,
@@ -23,17 +21,18 @@ import {
   FormGroup,
   Input,
   Label,
-  Navbar
+  Navbar,
 } from "reactstrap";
 import Home from "./components/pages/Home";
 import Statistics from "./components/pages/Statistics";
-import Reports from "./components/pages/Reports";
-import  {Sidebar}  from "./components/Sidebar";
+import { FoodTable } from "./components/FoodTable";
+import { Sidebar } from "./components/Sidebar";
+//import { Mock_table } from "components/pages/Mock_table";
 
 export function App() {
   const [foods, setFoods] = useState(data);
 
-  const [addFormData, setAddFormData] = useState({
+  const addFormData = useRef({
     Name: "",
     FoodGroup: "",
     FoodSubgroup: "",
@@ -49,36 +48,44 @@ export function App() {
   //manejador para añadir datos al formulario
   const handleAddFormChange = (event) => {
     event.preventDefault();
+    event.stopPropagation();
 
     const fieldName = event.target.getAttribute("name"); //devuelve la clave del atributo que queramos añadir
     const fieldValue = event.target.value;
 
-    const newFormData = { ...addFormData }; //nuevo formulario copia el form anterior
+    const newFormData = { ...addFormData.current }; //nuevo formulario copia el form anterior
     newFormData[fieldName] = fieldValue;
 
-    setAddFormData(newFormData);
+    addFormData.current = newFormData; //current cuando se usa UseRef
+
+    console.log(newFormData);
   };
 
   //agregar datos a la tabla.
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
 
+    console.log(event)
+    
+
     //crear nuevo objeto con los datos que ha almacenado el usuario
     const newFood = {
       id: nanoid(),
-      Name: addFormData.Name,
-      FoodGroup: addFormData.FoodGroup,
-      FoodSubgroup: addFormData.FoodSubgroup,
-      Country: addFormData.Country,
-      Energy: addFormData.Energy,
-      TotalProteins: addFormData.TotalProteins,
-      TotalCarbos: addFormData.TotalCarbos,
-      TotalSugars: addFormData.TotalSugars,
-      TotalLipids: addFormData.TotalLipids,
+      Name: addFormData.current.Name,
+      FoodGroup: addFormData.current.FoodGroup,
+      FoodSubgroup: addFormData.current.FoodSubgroup,
+      Country: addFormData.current.Country,
+      Energy: addFormData.current.Energy,
+      TotalProteins: addFormData.current.TotalProteins,
+      TotalCarbos: addFormData.current.TotalCarbos,
+      TotalSugars: addFormData.current.TotalSugars,
+      TotalLipids: addFormData.current.TotalLipids,
     };
 
     const newFoods = [...foods, newFood];
     setFoods(newFoods);
+    
+    console.log(newFood);
   };
 
   //Abrir y cerrar el modal de añadir alimento
@@ -88,12 +95,13 @@ export function App() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  
+  /*
   return (
     <Fragment>
       <Navbar />
-      <FoodTable foods={foods} setFoods={setFoods} />
-      <AddFood
+      <FoodTable
+        foods={foods}
+        setFoods={setFoods}
         handleAddFormChange={handleAddFormChange}
         handleAddFormSubmit={handleAddFormSubmit}
         show={show}
@@ -102,31 +110,47 @@ export function App() {
         handleClose={handleClose}
       />
     </Fragment>
-  );
-
-
+  ); 
   
 
-  
-/*
+
+ */
   //nav bar side
+  function NotFound() {
+    return <>Ha llegado a una página que no existe</>;
+  }
 
   return (
     <Fragment>
       <Router>
-        <Navbar />
         <div>
-          <Sidebar />
-          <div className="content">
-            <Switch>
-              <Route path="/" exact={true} component={Home} />
-              <Route path="/statistics" exact={true} component={Statistics} />
-              <Route path="/reports" exact={true} component={Reports} />
-            </Switch>
+          <div className="main-panel">
+            <Sidebar />
+            <div className="content w-100">
+              <Switch>
+                <Route path="/" exact={true} component={Home} />
+                <Route path="/statistics" exact={true} component={Statistics} />
+                <Route
+                  path="/foodtable"
+                  component={() => (
+                    <FoodTable
+                      foods={foods}
+                      setFoods={setFoods}
+                      handleAddFormChange={handleAddFormChange}
+                      handleAddFormSubmit={handleAddFormSubmit}
+                      show={show}
+                      setShow={setShow}
+                      handleShow={handleShow}
+                      handleClose={handleClose}
+                    />
+                  )}
+                />
+                <Route path="*" component={NotFound} />
+              </Switch>
+            </div>
           </div>
         </div>
       </Router>
     </Fragment>
   );
-  */
 }

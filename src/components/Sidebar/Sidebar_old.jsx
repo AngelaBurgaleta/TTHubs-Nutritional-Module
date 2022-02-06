@@ -21,7 +21,7 @@ import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-import Home from "components/pages/Home";
+
 
 import logo from "logo.svg";
 

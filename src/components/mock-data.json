@@ -22,5 +22,18 @@
       "TotalCarbos": "0",
       "TotalSugars": "0",
       "TotalLipids": "16"
+    },
+    {
+      "id": 3,
+      "Name": "Panga",
+      "FoodGroup": "Pescado",
+      "FoodSubgroup": "Pescado blanco",
+      "Country": "Spain",
+      "EnergyKcal": "67",
+      "EnergyKJ": "279",
+      "TotalProteins": "16",
+      "TotalCarbos": "0",
+      "TotalSugars": "0",
+      "TotalLipids": "1"
     }
   ]
