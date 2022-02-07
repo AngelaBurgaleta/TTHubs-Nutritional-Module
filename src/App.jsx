@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import data from "./components/mock-data.json";
 //import { AddFood } from "./components/AddFood";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import {
   Card,
   Container,
@@ -27,6 +28,9 @@ import Home from "./components/pages/Home";
 import Statistics from "./components/pages/Statistics";
 import { FoodTable } from "./components/FoodTable";
 import { Sidebar } from "./components/Sidebar";
+
+
+import { Navigation } from "components/Navigation";
 //import { Mock_table } from "components/pages/Mock_table";
 
 export function App() {
@@ -115,20 +119,37 @@ export function App() {
 
 
  */
-  //nav bar side
+  
+//mostrar ocultar sidebar
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+
+//nav bar side
   function NotFound() {
-    return <>Ha llegado a una página que no existe</>;
+    return (<div class="main-panel ps">Página no encontrada</div>);
   }
 
+  /*
+  return (
+    <Fragment>
+      <DemoNavbar2 />
+    </Fragment>
+  ) */
+  
+  //FUNCIONAL
   return (
     <Fragment>
       <Router>
+        
         <div>
-          <div className="main-panel">
+          
+          
+            
             <Sidebar />
             <div className="content w-100">
               <Switch>
-                <Route path="/" exact={true} component={Home} />
+                
                 <Route path="/statistics" exact={true} component={Statistics} />
                 <Route
                   path="/foodtable"
@@ -145,12 +166,17 @@ export function App() {
                     />
                   )}
                 />
+
                 <Route path="*" component={NotFound} />
               </Switch>
             </div>
           </div>
-        </div>
+        
       </Router>
     </Fragment>
+    
   );
+ 
+
+  
 }
